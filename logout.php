@@ -9,8 +9,21 @@ $_SESSION = array();
 // Destroy the session.
 session_destroy();
 
-// Redirect to login page //////// tempMenu.php prepísať na index.php
-header("location: tempMenu.php");
+// Redirect to login page
+header("location: ../index.php");
 exit;
 }
+
+if($_SESSION['ldapName']){
+    // destroy session
+    session_unset();
+    $_SESSION = array();
+    unset($_SESSION['ldapName']);
+    session_destroy();
+
+    // Redirect to login page
+    header("location: ../index.php");
+    exit;
+}
+
 ?>
