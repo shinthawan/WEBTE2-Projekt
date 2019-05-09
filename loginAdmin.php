@@ -131,6 +131,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         </div>
     <!--    <p>Don't have an account? <a href="register.php">Sign up now</a>.</p>-->
     </form>
+    <a href="../index.php" class="btn btn-info ">Menu</a>
+
 </div>
 </body>
 </html>
