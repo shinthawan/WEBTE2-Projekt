@@ -45,30 +45,44 @@ if (isset($_POST["import"])) {
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
             <div class="form-group">
                 <label>Školský rok</label>
-                <input type="text" name="username" class="form-control" value="<?php echo $schoolYear; ?>">
-                <span class="help-block"></span>
+                <select name='schoolYear' class="form-control">
+                    <!--
+                        tu este nie je jasne ci to chcu takto napevno roky alebo ci to bude nejako v DB a
+                        odtial sa to bude tahat
+                     -->
+                    <option value="<?php $schoolYear="ZS 2019/2020" ?>">ZS 2019/2020</option>
+                    <option value="<?php $schoolYear="LS 2019/2020" ?>">LS 2019/2020</option>
+                    <option value="<?php $schoolYear="ZS 2020/2021" ?>">ZS 2020/2021</option>
+                    <option value="<?php $schoolYear="LS 2020/2021" ?>">LS 2020/2021</option>
+                    <option value="<?php $schoolYear="ZS 2022/2023" ?>">ZS 2022/2023</option>
+                    <option value="<?php $schoolYear="LS 2022/2023" ?>">LS 2022/2023</option>
+                </select>
             </div>
             <div class="form-group">
                 <label>Názov predmetu</label>
                 <input type="text" name="predmetName" class="form-control">
-                <span class="help-block"><?php echo $password_err; ?></span>
-            </div>
-            <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
-                <label>Upload file</label>
-                <input type="file" name="uploadFile" class="form-control" accept=".csv">
-                <span class="help-block"><?php echo $password_err; ?></span>
-            </div>
-            <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
-                <label>Oddeľovač stĺpcov</label>
-                <input type="password" name="tableChar" class="form-control">
-                <span class="help-block"><?php echo $password_err; ?></span>
             </div>
             <div class="form-group">
-                <input type="submit" class="btn btn-primary" value="import" name="import">
+                <div class="custom-file">
+                    <label class="btn btn-default btn-file">
+                        <input type="file" class="custom-file-input" accept=".csv">
+                    </label>
+
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Oddeľovač stĺpcov</label>
+                <select name='schoolYear' class="form-control">
+                    <option value="<?php $columSeparator=";" ?>"> ; </option>
+                    <option value="<?php $columSeparator="," ?>"> , </option>
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="submit" class="btn btn-primary" value="Import" name="import">
             </div>
             <div id="labelError"></div>
             <!--<p>Don't have an account? <a href="register.php">Sign up now</a>.</p> Ak by bolo potrebne aj registráciu tak pridám-->
-
+            <a href="logout.php" class="btn btn-danger">Sign Out of Your Account</a>
         </form>
     </div>
 </body>
