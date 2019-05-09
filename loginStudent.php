@@ -76,7 +76,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             $stmt->execute();*/
 
                             // Redirect user to welcome page
-                            header("location: welcome.php");
+                            header("location: studentView.php");
                         } else{
                             // Display an error message if password is not valid
                             $password_err = "The password you entered was not valid.";
@@ -129,6 +129,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <div class="form-group">
             <input type="submit" class="btn btn-primary" value="Login">
         </div>
+        <a href="../index.php" class="btn btn-info ">Menu</a>
         <!--<p>Don't have an account? <a href="register.php">Sign up now</a>.</p>-->
     </form>
 </div>
