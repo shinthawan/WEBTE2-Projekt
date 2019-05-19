@@ -1,13 +1,12 @@
 <?php
 // Initialize the session
 session_start();
-// Include config file
-require_once "uloha1/config.php";
 ?>
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sk">
 <head>
-    <title>Bootstrap Example</title>
+    <title>Koncoročné zadanie</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
@@ -23,9 +22,9 @@ require_once "uloha1/config.php";
         </div>
         <ul class="nav navbar-nav">
             <li class="active"><a href="#">Home</a></li>
-            <li><a href="uloha1/uloha1index.php">Uloha 1</a></li>           <!-- tu odkazujem na svoje menu v ulohe tam sa potom riesi login atd-->
-            <li><a href="u2_index.php">Uloha 2</a></li>
-            <li><a href="#">uloha 3</a></li>
+            <li><a href="uloha1/uloha1index.php">Úloha 1</a></li>           <!-- tu odkazujem na svoje menu v ulohe tam sa potom riesi login atd-->
+            <li><a href="u2_index.php">Úloha 2</a></li>
+            <li><a href="#">Úloha 3</a></li>
         </ul>
     </div>
 </nav>
