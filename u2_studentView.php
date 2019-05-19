@@ -95,7 +95,7 @@ if(isset($_GET['show']) && !empty($_GET['predmetName']) && !empty($_GET['schoolY
         }
     }
 
-    $sql="SELECT predmet.id as predmetID, tim.cislo,student.id, tim.suhlas AS suhlas_adm, student.meno, zaznam.body_stud, zaznam.suhlas_stud, tim.body FROM zaznam 
+    $sql="SELECT predmet.id as predmetID, tim.cislo,student.id, tim.suhlas AS suhlas_adm, student.meno, zaznam.body_stud, zaznam.suhlas_stud, tim.body, student.email FROM zaznam 
                             INNER JOIN predmet ON predmet.id = zaznam.id_predmet 
                             INNER JOIN student ON student.id = zaznam.id_student
                             INNER JOIN tim ON tim.id = zaznam.id_tim
@@ -127,6 +127,7 @@ if(isset($_GET['show']) && !empty($_GET['predmetName']) && !empty($_GET['schoolY
             }else{
                 $toPrintBasic = $toPrintBasic . "
                 <tr>
+                    <td>" . $row['email'] . "</td>
                     <td>" . $row['meno'] . "</td>
                     <td>" . $row['body_stud'] . "</td>";
                 if ($id == $studentID){
@@ -218,12 +219,13 @@ if(isset($_GET['show']) && !empty($_GET['predmetName']) && !empty($_GET['schoolY
                 <table class='table table-bordered'>
                 <thead class='thead-dark'>
                     <tr>
+                        <th scope='col' class=\"col-md-3\">Email</th>
                         <th scope='col' class=\"col-md-3\">Meno</th>
                         <th scope='col' class=\"col-md-4\">Body</th>
                         <th scope='col' class=\"col-md-4\">Súhlas</th>
                     </tr>
                 </thead>";
-            echo $toPrintBasic."</table></div>";
+                echo $toPrintBasic."</table></div>";
             }
         }
     }
@@ -247,65 +249,65 @@ if(isset($_GET['show']) && !empty($_GET['predmetName']) && !empty($_GET['schoolY
 </head>
 <body style="padding: 7vw">
 
-    <div class="wrapper">
-        <h3>Prihlásený študent: <?php
-            $id = $_SESSION['id'];
-            $sql = "SELECT meno FROM student WHERE id='$id'";
-            $result = mysqli_query($conn, $sql);
-            if ($result->num_rows > 0) {
-                while ($row = $result->fetch_assoc()) {   //Creates a loop to loop through results
-                    echo $row['meno'];
-                }
+<div class="wrapper">
+    <h3>Prihlásený študent: <?php
+        $id = $_SESSION['id'];
+        $sql = "SELECT meno FROM student WHERE id='$id'";
+        $result = mysqli_query($conn, $sql);
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {   //Creates a loop to loop through results
+                echo $row['meno'];
             }
-            ?></h3>
-        <h2>Zobrazenie výsledkov</h2>
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="get">
-            <select name='schoolYear' id="schoolYear" class="form-control" onChange="getPredmet(this.value);">
-                <option value="">Vyber rok</option>
-                <option value="ZS 2019/2020">ZS 2019/2020</option>
-                <option value="LS 2019/2020">LS 2019/2020</option>
-                <option value="ZS 2020/2021">ZS 2020/2021</option>
-                <option value="LS 2020/2021">LS 2020/2021</option>
-                <option value="ZS 2021/2022">ZS 2021/2022</option>
-                <option value="LS 2021/2022">LS 2021/2022</option>
-            </select>
-
-            <select name='predmetName' id="predmetName" class="form-control">
-                <option value="">Vyber predmet</option>
-            </select>
-
-            <div class="form-group">
-                <input style="margin-top:5px;" type="submit" class="btn btn-primary" name="show" value="Zobraziť">
-            </div>
-
-            <br>
-            <a href="u2_logout.php" class="btn btn-danger">Odhlásiť sa</a>
-        </form>
-    </div>
-    <script>
-        function postSuhlas(suhlas, timID) {
-            $.ajax({
-                type: "POST",
-                url: "u2_studentView.php",
-                data:{ suhlas: suhlas, timID:timID},
-                success: function () {
-                    setTimeout(function(){
-                        location.reload();
-                    }, 500);
-                }
-            });
         }
+        ?></h3>
+    <h2>Zobrazenie výsledkov</h2>
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="get">
+        <select name='schoolYear' id="schoolYear" class="form-control" onChange="getPredmet(this.value);">
+            <option value="">Vyber rok</option>
+            <option value="ZS 2019/2020">ZS 2019/2020</option>
+            <option value="LS 2019/2020">LS 2019/2020</option>
+            <option value="ZS 2020/2021">ZS 2020/2021</option>
+            <option value="LS 2020/2021">LS 2020/2021</option>
+            <option value="ZS 2021/2022">ZS 2021/2022</option>
+            <option value="LS 2021/2022">LS 2021/2022</option>
+        </select>
 
-        function getPredmet(val) {
-            $.ajax({
-                type: "POST",
-                url: "u2_selectOptions.php",
-                data:{ rokStudent: val, idStudent:<?php echo $_SESSION['id'] ?>},
-                success: function (data) {
-                    $("#predmetName").html(data);
-                }
-            });
-        }
-    </script>
+        <select name='predmetName' id="predmetName" class="form-control">
+            <option value="">Vyber predmet</option>
+        </select>
+
+        <div class="form-group">
+            <input style="margin-top:5px;" type="submit" class="btn btn-primary" name="show" value="Zobraziť">
+        </div>
+
+        <br>
+        <a href="u2_logout.php" class="btn btn-danger">Odhlásiť sa</a>
+    </form>
+</div>
+<script>
+    function postSuhlas(suhlas, timID) {
+        $.ajax({
+            type: "POST",
+            url: "u2_studentView.php",
+            data:{ suhlas: suhlas, timID:timID},
+            success: function () {
+                setTimeout(function(){
+                    location.reload();
+                }, 500);
+            }
+        });
+    }
+
+    function getPredmet(val) {
+        $.ajax({
+            type: "POST",
+            url: "u2_selectOptions.php",
+            data:{ rokStudent: val, idStudent:<?php echo $_SESSION['id'] ?>},
+            success: function (data) {
+                $("#predmetName").html(data);
+            }
+        });
+    }
+</script>
 </body>
 </html>
