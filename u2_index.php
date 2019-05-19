@@ -27,7 +27,7 @@ if ((isset($_SESSION["type"]) && (($_SESSION["type"]) == student))){
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
 </head>
 <div class="container">
-    <h1>Vyber si spôsob prihlásenia</h1>
+    <h1>Vyberte si spôsob prihlásenia</h1>
     <a href="u2_loginAdmin.php?" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Login admin</a>
     <a href="u2_loginLdap.php?" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Login študent</a>
 </div>
