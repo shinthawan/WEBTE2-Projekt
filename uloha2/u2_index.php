@@ -42,7 +42,7 @@ if ((isset($_SESSION["type"]) && (($_SESSION["type"]) == student))){
     <h1>Vyberte spôsob prihlásenia</h1>
     <a href="u2_loginAdmin.php?" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Login admin</a>
     <a href="u2_loginLdap.php?" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Login študent</a><br><br>
-    <a href="index.php?" class="btn btn-danger btn-lg" role="button" aria-pressed="true">Späť</a>
+    <a href="../index.php?" class="btn btn-danger btn-lg" role="button" aria-pressed="true">Späť</a>
 </div>
 <script>
     function getPredmet(val) {
