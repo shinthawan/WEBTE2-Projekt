@@ -196,7 +196,7 @@ if(isset($_GET['show'])){
 <html lang="sk">
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
+    <title>Úloha 2</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
     <style type="text/css">
@@ -227,7 +227,7 @@ if(isset($_GET['show'])){
         <div class="form-group">
             <input type="submit" class="btn btn-primary" name="show" value="Show">
         </div>
-        <a href="u2_stats.php" class="btn btn-info">Štatistiky</a><br><br>
+        <a href="u2_stats.php" class="btn btn-info">Štatistiky</a>
         <a href="u2_importResult.php" class="btn btn-primary">Importovať údaje</a><br><br>
         <a href="u2_logout.php" class="btn btn-danger">Odhlásiť sa</a><br>
     </form>
