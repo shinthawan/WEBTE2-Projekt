@@ -124,10 +124,6 @@ if (isset($_POST["import"])) {
         <div class="form-group">
             <label>Školský rok</label>
             <select name='schoolYear' class="form-control">
-                <!--
-                    tu este nie je jasne ci to chcu takto napevno roky alebo ci to bude nejako v DB a
-                    odtial sa to bude tahat
-                 -->
                 <option value="ZS 2019/2020">ZS 2019/2020</option>
                 <option value="LS 2019/2020">LS 2019/2020</option>
                 <option value="ZS 2020/2021">ZS 2020/2021</option>
