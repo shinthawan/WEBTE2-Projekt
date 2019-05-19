@@ -225,7 +225,7 @@ if(isset($_GET['show'])){
         </select>
         <br>
         <div class="form-group">
-            <input type="submit" class="btn btn-primary" name="show" value="Show">
+            <input type="submit" class="btn btn-primary" name="show" value="Zobraziť">
         </div>
         <a href="u2_stats.php" class="btn btn-info">Štatistiky</a>
         <a href="u2_importResult.php" class="btn btn-primary">Importovať údaje</a><br><br>
