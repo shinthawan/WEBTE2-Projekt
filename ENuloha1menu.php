@@ -42,6 +42,9 @@ if(isset($_GET['language']) && $_GET['language'] == "EN"){
             <li><?php if(isset($_SESSION["admin"]) && $_SESSION["admin"] === true){                                                     //ak je student tak na studentView
                 echo"<a href=\"ENshowResult.php\">Show results</a>";          //pri prihlaseni ako student ale aj pri prihlaseni cez ldap sa naplni session student
                 }?></li>
+            <li><?php if(isset($_SESSION["student"]) && $_SESSION["student"] === true){                                                     //ak je student tak na studentView
+                    echo"<a href=\"ENstudentView.php\">Show results</a>";          //pri prihlaseni ako student ale aj pri prihlaseni cez ldap sa naplni session student
+                }?></li>
             <li><?php if(isset($_SESSION["admin"]) && $_SESSION["admin"] === true){                                                     //ak je student tak na studentView
                     echo"<a href=\"ENdeleteSubject.php\">Delete subject</a>";          //pri prihlaseni ako student ale aj pri prihlaseni cez ldap sa naplni session student
                 }?></li>
