@@ -20,16 +20,15 @@ if ((isset($_SESSION["type"]) && (($_SESSION["type"]) == student))){
 }
 ?>
 <!doctype html>
-<html lang="en">
+<html lang="sk">
 <head>
 
-    <title>Login app</title>
-    <meta name="google-site-verification" content="Nm8_jfnV7uC9sELhiGjZhFj4XAWI1ZDAm5G49D_vV70" />
+    <title>Login Úloha 2</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
 </head>
 <div class="container">
     <h1>Vyber si spôsob prihlásenia</h1>
     <a href="u2_loginAdmin.php?" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Login admin</a>
-    <a href="u2_loginLdap.php?" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Login</a>
+    <a href="u2_loginLdap.php?" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Login študent</a>
 </div>
 </html>
