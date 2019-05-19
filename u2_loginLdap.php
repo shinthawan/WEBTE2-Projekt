@@ -108,7 +108,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sk">
 <head>
     <meta charset="UTF-8">
     <title>Login študent</title>
@@ -120,16 +120,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body>
 <div class="wrapper">
-    <h2>Login LDAP</h2>
-    <p>Please fill in your credentials to login.</p>
+    <h2>Login študent</h2>
+    <p>Prosím vyplňte svoje údaje pre prihlásenie.</p>
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
         <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
-            <label>Username</label>
+            <label>Meno</label>
             <input type="text" name="username" class="form-control" value="<?php echo $username; ?>">
             <span class="help-block"><?php echo $username_err; ?></span>
         </div>
         <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
-            <label>Password</label>
+            <label>Heslo</label>
             <input type="password" name="password" class="form-control">
             <span class="help-block"><?php echo $password_err; ?></span>
         </div>
