@@ -24,14 +24,24 @@ session_start();
             <li class="active"><a href="#">Home</a></li>
             <li><a href="uloha1/uloha1index.php">Úloha 1</a></li>
             <li><a href="uloha2/u2_index.php">Úloha 2</a></li>
-            <li><a href="#">Úloha 3</a></li>
+            <li><a href="uloha3/u3_index.php">Úloha 3</a></li>
         </ul>
     </div>
 </nav>
 
 <div class="container">
-    <h3>Basic Navbar Example</h3>
-    <p>A navigation bar is a navigation header that is placed at the top of the page.</p>
+    <h3>Rozdelenie úloh v záverečnom zadaní</h3>
+    <table class="table">
+        <thead><tr><th>Meno študenta</th><th>úloha</th></tr></thead>
+        <tbody>
+            <tr><td>Sebastian Schurdak</td><td>Úloha 1 - prihlasovanie, pohľad administrátora </td></tr>
+            <tr><td>Matúš Holotňák</td><td>Úloha 1 - pohľad študenta</td></tr>
+            <tr><td>Jozef Šimek</td><td>Úloha 2 - prihlasovanie, pohľad administrátora, import\export csv súborov</td></tr>
+            <tr><td>Milan Javor</td><td>Úloha 2 - návrh db, pohľad študenta, štatistika, preklad stránky</td></tr>
+            <tr><td>Adrian Blažíček</td><td>Úloha 3</td></tr>
+        </tbody>
+    </table>
+    <a href="dokumentacia.html">Technická dokumentácia projektu</a>
 </div>
 
 </body>

@@ -103,7 +103,8 @@ sent mails :
 </div>
 <div class="container" style="position: fixed; bottom: 0; right: 0;">
     <button class="btn btn-secondary" style="float: right" onclick="window.location.href='u3_homescreen.php'">Language</button>
-    <button class="btn btn-danger"  style="float: right">Log out</button>
+    <button class="btn btn-danger"  style="float: right" onclick="window.location.href='../uloha1/logout.php'">Log Out</button>
+
 </div>
 </body>
 </html>
