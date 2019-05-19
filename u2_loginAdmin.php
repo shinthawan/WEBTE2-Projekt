@@ -72,7 +72,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sk">
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
@@ -100,7 +100,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <div class="form-group">
             <input type="submit" class="btn btn-primary" value="Login">
         </div>
-    <!--    <p>Don't have an account? <a href="register.php">Sign up now</a>.</p>-->
     </form>
     <a href="u2_index.php" class="btn btn-info ">Menu</a>
 
