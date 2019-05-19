@@ -40,11 +40,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             $ldapbind = ldap_bind($ldapconn, $ldaprdn, $ldappass);
 
             if($ldapbind){
+                $results=ldap_search($ldapconn,$dn,"uid=$username");
+                $info=ldap_get_entries($ldapconn,$results);
                 echo "LDAP bind successful...";
                 $_SESSION["ldap"] = true;
                 $_SESSION["student"] = true;
+                $_SESSION["loggedin"] = true;
                 $_SESSION["ldapName"] = $username;
-                header("location: menu.php");
+                $_SESSION["email"] = $info[0]['mail'][1];
+                $_SESSION["id"]= $info[0]['uisid'][0];
+                header("location: uloha1menu.php");
             }else {
                 echo "LDAP bind failure...";
             }
@@ -59,6 +64,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <title>Login</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
+    <link rel="stylesheet" href="print.css">
     <style type="text/css">
         body{ font: 14px sans-serif; }
         .wrapper{ width: 350px; padding: 20px; }
@@ -83,7 +89,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             <input type="submit" class="btn btn-primary" value="Login">
         </div>
     </form>
-    <a href="index.php" class="btn btn-info ">Menu</a>
+    <a href="../index.php" class="btn btn-info ">Menu</a>
 </div>
 </body>
 </html>

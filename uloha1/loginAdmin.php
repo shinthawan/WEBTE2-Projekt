@@ -6,13 +6,13 @@ error_reporting(E_ALL);
 session_start();
 
 // Check if the user is already logged in, if yes then redirect him to welcome page
-if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-    header("location: welcome.php");
+/*if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
+    header("location: importResult.php");
     exit;
-}
+}*/
 
 // Include config file
-require_once "uloha1/config.php";
+require_once "config.php";
 
 // Define variables and initialize with empty values
 $username = $password = "";
@@ -38,7 +38,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Validate credentials
     if(empty($username_err) && empty($password_err)){
         // Prepare a select statement
-        $sql = "SELECT student_id, student_name, student_password FROM student WHERE student_name = ?";
+        $sql = "SELECT admin_id, admin_name, admin_password FROM admin WHERE admin_name = ?";
 
         if($stmt = $mysqli->prepare($sql)){
             // Bind variables to the prepared statement as parameters
@@ -65,7 +65,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             //$wayDatabase = "Database";
                             //$date=date('Y/m/d H:i:s',time());
                             $_SESSION["loggedin"] = true;
-                            $_SESSION["student"] = true;
+                            $_SESSION["admin"] = true;
                             $_SESSION["id"] = $id;
                             $_SESSION["username"] = $username;
                             /*$_SESSION["loginDate"] = $date;
@@ -77,7 +77,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             $stmt->execute();*/
 
                             // Redirect user to welcome page
-                            header("location: menu.php");
+                            header("location: uloha1menu.php");
                         } else{
                             // Display an error message if password is not valid
                             $password_err = "The password you entered was not valid.";
@@ -107,6 +107,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <meta charset="UTF-8">
     <title>Login</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
+    <link rel="stylesheet" href="print.css">
     <style type="text/css">
         body{ font: 14px sans-serif; }
         .wrapper{ width: 350px; padding: 20px; }
@@ -114,8 +115,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 </head>
 <body>
 <div class="wrapper">
-    <h2>Student Login</h2>
-    <p>Student fill in your credentials to login.</p>
+    <h2>Admin Login</h2>
+    <p>Admin fill in your credentials to login.</p>
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
         <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
             <label>Username</label>
@@ -130,9 +131,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <div class="form-group">
             <input type="submit" class="btn btn-primary" value="Login">
         </div>
-        <a href="index.php" class="btn btn-info ">Menu</a>
-        <!--<p>Don't have an account? <a href="register.php">Sign up now</a>.</p>-->
+    <!--    <p>Don't have an account? <a href="register.php">Sign up now</a>.</p>-->
     </form>
+    <a href="../index.php" class="btn btn-info ">Menu</a>
+
 </div>
 </body>
 </html>
