@@ -23,7 +23,7 @@ require_once "uloha1/config.php";
         </div>
         <ul class="nav navbar-nav">
             <li class="active"><a href="#">Home</a></li>
-            <li><a href="uloha1/uloha1menu.php">Uloha 1</a></li>           <!-- tu odkazujem na svoje menu v ulohe tam sa potom riesi login atd-->
+            <li><a href="uloha1/uloha1index.php">Uloha 1</a></li>           <!-- tu odkazujem na svoje menu v ulohe tam sa potom riesi login atd-->
             <li><a href="#">Uloha 2</a></li>
             <li><a href="#">uloha 3</a></li>
         </ul>
