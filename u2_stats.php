@@ -125,7 +125,7 @@ if((isset($_POST['show'])) && ($_POST['predmetName'] != null)) {
 <html lang="sk">
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
+    <title>Štatisiky</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <style type="text/css">
