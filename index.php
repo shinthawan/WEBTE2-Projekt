@@ -22,8 +22,8 @@ session_start();
         </div>
         <ul class="nav navbar-nav">
             <li class="active"><a href="#">Home</a></li>
-            <li><a href="uloha1/uloha1index.php">Úloha 1</a></li>           <!-- tu odkazujem na svoje menu v ulohe tam sa potom riesi login atd-->
-            <li><a href="u2_index.php">Úloha 2</a></li>
+            <li><a href="uloha1/uloha1index.php">Úloha 1</a></li>
+            <li><a href="uloha2/u2_index.php">Úloha 2</a></li>
             <li><a href="#">Úloha 3</a></li>
         </ul>
     </div>
