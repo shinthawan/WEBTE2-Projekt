@@ -11,12 +11,12 @@ if(isset($_GET['language']) && $_GET['language'] == "EN"){
     header("location: u2_stats.php");
 }
 
+
 // Check if the user is already logged in, if yes then redirect him to logged page
 if((!(isset($_SESSION["type"])) || ($_SESSION['type'] != admin))){
-    header("location: u2_index.php");
+    header("location: u2en_index.php");
     exit;
 }
-
 if((isset($_POST['show'])) && ($_POST['predmetName'] != null)) {
     $rok = $_POST['schoolYear'];
     $predmet = $_POST['predmetName'];
@@ -76,10 +76,10 @@ if((isset($_POST['show'])) && ($_POST['predmetName'] != null)) {
         }
     }
 
-    echo   "Počet študentov v predmete ".$predmet." je ".$pocetAllStudentov.".<br><br>
-            Počet súhlasiacich študentov je ".$pocet1Studentov.".<br><br>
-            Počet nesúhlasiacich študentov je ".$pocet2Studentov.".<br><br>
-            Počet nevyjadrených študentov je ".$pocet0Studentov.".<br><br>
+    echo   "The number of students in subject ".$predmet." is ".$pocetAllStudentov.".<br><br>
+            The number of students who agree with their valuation is ".$pocet1Studentov.".<br><br>
+            The number of students who disagree with their valuation is ".$pocet2Studentov.".<br><br>
+            The number of undecided students is ".$pocet0Studentov.".<br><br>
             <div id='piechartStudenti'></div>";
 
 
@@ -120,10 +120,10 @@ if((isset($_POST['show'])) && ($_POST['predmetName'] != null)) {
         }
     }
 
-    echo   "Počet tímov v predmete ".$predmet." je ".$pocetAllTimov.".<br><br>
-            Počet uzavretých tímov je ".$pocet1Timov.".<br><br>
-            Počet tímov ku ktorým sa treba vyjadriť je ".$pocet2Timov.".<br><br>
-            Počet tímov s nevyjadrenými študentami je ".$pocet0Timov.".<br><br>
+    echo   "The number of teams in subject ".$predmet." is ".$pocetAllTimov.".<br><br>
+            The number of closed teams is ".$pocet1Timov.".<br><br>
+            The number of teams, which need further discussion, is ".$pocet2Timov.".<br><br>
+            The number of teams with undecided students is ".$pocet0Timov.".<br><br>
             <div id='piechartTimy'></div>";
 }
 ?>
@@ -132,7 +132,7 @@ if((isset($_POST['show'])) && ($_POST['predmetName'] != null)) {
 <html lang="sk">
 <head>
     <meta charset="UTF-8">
-    <title>Úloha 2 - Štatisika</title>
+    <title>Task 2 - Statistics</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <link rel="stylesheet" media="print" href="print.css" type="text/css">
@@ -143,14 +143,16 @@ if((isset($_POST['show'])) && ($_POST['predmetName'] != null)) {
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 </head>
 <body style="padding-left: 7vw">
+
 <div class="fixed-top">
-    <ul><a href="u2en_stats.php?language=EN">Switch to <img name="en" src="u2_gb.png" alt="en"/></a></ul>
+    <ul><a href="u2_stats.php?language=SK">Prepni do <img name="sk" src="u2_sk.png" alt="sk"/></a></ul>
 </div>
+
 <div class="wrapper" id="teampointsfill">
-    <h2>Zobrazenie výsledkov</h2>
+    <h2>Show results</h2>
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
         <select name='schoolYear' id="schoolYear" class="form-control" onChange="getPredmet(this.value);">
-            <option value="">Vyber rok</option>
+            <option value="">Select year</option>
             <option value="ZS 2019/2020">ZS 2019/2020</option>
             <option value="LS 2019/2020">LS 2019/2020</option>
             <option value="ZS 2020/2021">ZS 2020/2021</option>
@@ -160,14 +162,14 @@ if((isset($_POST['show'])) && ($_POST['predmetName'] != null)) {
         </select>
 
         <select name='predmetName' id="predmetName" class="form-control">
-            <option value="">Vyber predmet</option>
+            <option value="">Select subject</option>
         </select>
 
         <div class="form-group">
-            <input style="margin-top:5px;" type="submit" class="btn btn-primary" name="show" value="Zobraziť">
+            <input style="margin-top:5px;" type="submit" class="btn btn-primary" name="show" value="Show">
         </div>
-        <a href="u2_showResult.php" class="btn btn-primary">Späť</a>
-        <a href="u2_logout.php" class="btn btn-danger">Odhlásiť sa</a>
+        <a href="u2en_showResult.php" class="btn btn-primary">Back</a>
+        <a href="u2_logout.php" class="btn btn-danger">Sign out</a>
     </form>
 </div>
 
@@ -179,14 +181,14 @@ if((isset($_POST['show'])) && ($_POST['predmetName'] != null)) {
 
     function drawStudentiChart() {
         var data = google.visualization.arrayToDataTable([
-            ['Študenti', 'Počet'],
-            ['Súhlas', <?php echo $pocet1Studentov ?>],
-            ['Nesúhlas', <?php echo $pocet2Studentov ?>],
-            ['Nevyjadrení', <?php echo $pocet0Studentov ?>],
+            ['Students', 'Count'],
+            ['Agree', <?php echo $pocet1Studentov ?>],
+            ['Disagree', <?php echo $pocet2Studentov ?>],
+            ['Not decided yet', <?php echo $pocet0Studentov ?>],
         ]);
 
         // Optional; add a title and set the width and height of the chart
-        var options = {'title':'Študenti', 'width':550, 'height':400};
+        var options = {'title':'Students', 'width':550, 'height':400};
 
         var chart = new google.visualization.PieChart(document.getElementById('piechartStudenti'));
         chart.draw(data, options);
@@ -194,19 +196,18 @@ if((isset($_POST['show'])) && ($_POST['predmetName'] != null)) {
 
     function drawTimyChart() {
         var data = google.visualization.arrayToDataTable([
-            ['Tímy', 'Počet'],
-            ['Uzavretý tím', <?php echo $pocet1Timov ?>],
-            ['Nesúhlas administrátora', <?php echo $pocet2Timov ?>],
-            ['Nevyjadrení študenti', <?php echo $pocet0Timov ?>],
+            ['Teams', 'Count'],
+            ['Closed team', <?php echo $pocet1Timov ?>],
+            ['Admin disagrees', <?php echo $pocet2Timov ?>],
+            ['Undecided students in team', <?php echo $pocet0Timov ?>],
         ]);
 
         // Optional; add a title and set the width and height of the chart
-        var options = {'title':'Tímy', 'width':550, 'height':400};
+        var options = {'title':'Teams', 'width':550, 'height':400};
 
         var chart = new google.visualization.PieChart(document.getElementById('piechartTimy'));
         chart.draw(data, options);
     }
-
     function getPredmet(val) {
         $.ajax({
             type: "POST",

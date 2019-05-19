@@ -17,7 +17,7 @@ if(isset($_GET['language']) && $_GET['language'] == "EN"){
 
 // Check if the user is already logged in, if yes then redirect him to welcome page
 if((!(isset($_SESSION["type"])) || ($_SESSION['type'] != student))){
-    header("location: u2_index.php");
+    header("location: u2en_index.php");
     exit;
 }
 
@@ -38,7 +38,7 @@ if(isset($_POST['sumbit_body_kapitan'])){
 
     if($pocetB != $pridelene) {
         echo "<div class=\"alert alert-danger\" role=\"alert\">
-                Pridelili ste málo alebo veľa bodov (" . $pocetB . "). Váš tím získal " . $pridelene . " bodov.</div>";
+                You have assigned too many or too few points (" . $pocetB . "). Your team got " . $pridelene . " points.</div>";
     }else{
         for($i = 0;$i<$pocetS;$i++){
             $sql="UPDATE zaznam 
@@ -149,13 +149,13 @@ if(isset($_GET['show']) && !empty($_GET['predmetName']) && !empty($_GET['schoolY
                         case "1":
                             $toPrintBasic = $toPrintBasic . "<td>
                             <i style='color: #4d8056 ;' class='fa fa-thumbs-up'></i>
-                            <div style='color: #4d8056;display: inline-block'>Študent <b>súhlasí</b> s týmto hodnotením.</div>
+                            <div style='color: #4d8056;display: inline-block'>Student <b>agrees</b> with this valuation.</div>
                             </td> ";
                             break;
                         case "2":
                             $toPrintBasic = $toPrintBasic . "<td>
                             <i style='color: #803024 ;' class='fa fa-thumbs-down'></i>
-                            <div style='color: #803024;display: inline-block'>Študent <b>nesúhlasí</b> s týmto hodnotením.</div>
+                            <div style='color: #803024;display: inline-block'>Student <b>disagrees</b> with this valuation.</div>
                             </td>";
                             break;
                     }
@@ -169,13 +169,13 @@ if(isset($_GET['show']) && !empty($_GET['predmetName']) && !empty($_GET['schoolY
                         case "1":
                             $toPrintBasic = $toPrintBasic . "<td>
                             <i style='color: #4d8056 ;' class='fa fa-thumbs-up'></i>
-                            <div style='color: #4d8056;display: inline-block'>Študent <b>súhlasí</b> s týmto hodnotením.</div>
+                            <div style='color: #4d8056;display: inline-block'>Student <b>agrees</b> with this valuation.</div>
                             </td>";
                             break;
                         case "2":
                             $toPrintBasic = $toPrintBasic . "<td>
                             <i style='color: #803024 ;' class='fa fa-thumbs-down'></i>
-                            <div style='color: #803024;display: inline-block'>Študent <b>nesúhlasí</b> s týmto hodnotením.</div>
+                            <div style='color: #803024;display: inline-block'>Student <b>disagrees</b> with this valuation.</div>
                             </td>";
                             break;
                     }
@@ -185,14 +185,14 @@ if(isset($_GET['show']) && !empty($_GET['predmetName']) && !empty($_GET['schoolY
 
         if(isset($toPrintKapitan)){
             if(!$zadelene){
-                echo"<div id='vysledok'><br><br><label>Tím č." . $cislo . "<br>
-                Celkové body tímu: " . $body_tim . "</label><br>
-                Váš tím ešte nemá rozdelené body. Môžete tak urobiť teraz.<br><br>
+                echo"<div id='vysledok'><br><br><label>Team #" . $cislo . "<br>
+                Team points: " . $body_tim . "</label><br>
+                As a team, you have not divided your points. You can do it now.<br><br>
                 <table class='table table-bordered'>
                 <thead class='thead-dark'>
                     <tr>
-                        <th scope='col' class=\"col-md-3\">Meno</th>
-                        <th scope='col' class=\"col-md-4\">Body</th>
+                        <th scope='col' class=\"col-md-3\">Name</th>
+                        <th scope='col' class=\"col-md-4\">Points</th>
                     </tr>
                 </thead>
                 <form action='" . $_SERVER['REQUEST_URI'] . "' method='post' enctype='multipart/form-data'>
@@ -202,25 +202,25 @@ if(isset($_GET['show']) && !empty($_GET['predmetName']) && !empty($_GET['schoolY
 
                 echo $toPrintKapitan;
                 echo"
-                </table><button type='submit' name='sumbit_body_kapitan' class='btn btn-warning' $classUdelitBody >Prideliť body </button>
+                </table><button type='submit' name='sumbit_body_kapitan' class='btn btn-warning' $classUdelitBody >Assign points</button>
                 </form></div>";
             }
         }
         if(isset($toPrintBasic)){
             if ($zadelene){
-                echo"<div id='vysledok'><br><br><label>Tím č." . $cislo . "<br>
-                Celkové body tímu: " . $body_tim . "</label><br> 
-                Váš tím má rozdelené body.";
+                echo"<div id='vysledok'><br><br><label>Team #" . $cislo . "<br>
+                Team points: " . $body_tim . "</label><br>
+                Your team has divided points.";
 
                 switch($suhlasAdmin){
                     case 0:
-                        echo " Čaká sa na schválenie adminom.<br><br>";
+                        echo "Waiting for admin approval.<br><br>";
                         break;
                     case 1:
-                        echo " Admin <b>súhlasí</b> s týmto rozdelením.<br><br>";
+                        echo " Admin <b>agrees</b> with this valuation.<br><br>";
                         break;
                     case 2:
-                        echo " Admin <b>nesúhlasí</b> s týmto rozdelením.<br><br>";
+                        echo " Admin <b>disagrees</b> with this valuation.<br><br>";
                         break;
                 };
                 echo "
@@ -228,9 +228,9 @@ if(isset($_GET['show']) && !empty($_GET['predmetName']) && !empty($_GET['schoolY
                 <thead class='thead-dark'>
                     <tr>
                         <th scope='col' class=\"col-md-3\">Email</th>
-                        <th scope='col' class=\"col-md-3\">Meno</th>
-                        <th scope='col' class=\"col-md-4\">Body</th>
-                        <th scope='col' class=\"col-md-4\">Súhlas</th>
+                        <th scope='col' class=\"col-md-3\">Name</th>
+                        <th scope='col' class=\"col-md-4\">Points</th>
+                        <th scope='col' class=\"col-md-4\">Agreement</th>
                     </tr>
                 </thead>";
                 echo $toPrintBasic."</table></div>";
@@ -245,7 +245,7 @@ if(isset($_GET['show']) && !empty($_GET['predmetName']) && !empty($_GET['schoolY
 <html lang="sk">
 <head>
     <meta charset="UTF-8">
-    <title>Úloha 2 - Pohľad Študenta</title>
+    <title>Task 2 - Student View</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <link rel="stylesheet" media="print" href="print.css" type="text/css">
@@ -256,12 +256,13 @@ if(isset($_GET['show']) && !empty($_GET['predmetName']) && !empty($_GET['schoolY
     </style>
 </head>
 <body style="padding: 7vw">
+
 <div class="fixed-top">
-    <ul><a href="u2_studentView.php?language=EN">Switch to <img name="en" src="u2_gb.png" alt="en"/></a></ul>
+    <ul><a href="u2en_studentView.php?language=SK">Prepni do <img name="sk" src="u2_sk.png" alt="sk"/></a></ul>
 </div>
 
 <div class="wrapper">
-    <h3>Prihlásený študent: <?php
+    <h3>Logged in: <?php
         $id = $_SESSION['id'];
         $sql = "SELECT meno FROM student WHERE id='$id'";
         $result = mysqli_query($conn, $sql);
@@ -272,10 +273,10 @@ if(isset($_GET['show']) && !empty($_GET['predmetName']) && !empty($_GET['schoolY
         }
         ?></h3>
     <div id="selector">
-        <h2>Zobrazenie výsledkov</h2>
+        <h2>Show results</h2>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="get">
             <select name='schoolYear' id="schoolYear" class="form-control" onChange="getPredmet(this.value);">
-                <option value="">Vyber rok</option>
+                <option value="">Select year</option>
                 <option value="ZS 2019/2020">ZS 2019/2020</option>
                 <option value="LS 2019/2020">LS 2019/2020</option>
                 <option value="ZS 2020/2021">ZS 2020/2021</option>
@@ -285,15 +286,15 @@ if(isset($_GET['show']) && !empty($_GET['predmetName']) && !empty($_GET['schoolY
             </select>
 
             <select name='predmetName' id="predmetName" class="form-control">
-                <option value="">Vyber predmet</option>
+                <option value="">Select subject</option>
             </select>
 
             <div class="form-group">
-                <input style="margin-top:5px;" type="submit" class="btn btn-primary" name="show" value="Zobraziť">
+                <input style="margin-top:5px;" type="submit" class="btn btn-primary" name="show" value="Show">
             </div>
 
             <br>
-            <a href="u2_logout.php" class="btn btn-danger">Odhlásiť sa</a>
+            <a href="u2_logout.php" class="btn btn-danger">Sign out</a>
         </form>
     </div>
 </div>

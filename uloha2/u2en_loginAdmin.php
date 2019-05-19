@@ -15,9 +15,10 @@ if(isset($_GET['language']) && $_GET['language'] == "EN"){
     header("location: u2_loginAdmin.php");
 }
 
+
 // Check if the user is already logged in, if yes then redirect him to logged page
 if(isset($_SESSION["type"])){
-    header("location: u2_index.php");
+    header("location: u2en_index.php");
     exit;
 }
 
@@ -61,7 +62,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         $_SESSION['username'] = $row['admin_name'];
                         $_SESSION['password'] = $row['admin_password'];
 
-                        header("location: u2_showResult.php");
+                        header("location: u2en_showResult.php");
 
                     } else {
                         // Display an error message if password is not valid
@@ -79,10 +80,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 ?>
 
 <!DOCTYPE html>
-<html lang="sk">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Úloha 2 - Login - Admin</title>
+    <title>Task 2 - Login - Admin</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
     <link rel="stylesheet" media="print" href="print.css" type="text/css">
     <style type="text/css">
@@ -92,19 +93,19 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 </head>
 <body>
 <div class="fixed-top">
-    <ul><a href="u2en_loginAdmin.php?language=EN">Switch to <img name="en" src="u2_gb.png" alt="en"/></a></ul>
+    <ul><a href="u2_loginAdmin.php?language=SK">Prepni do <img name="sk" src="u2_sk.png" alt="sk"/></a></ul>
 </div>
 <div class="wrapper">
     <h2>Login Admin</h2>
-    <p>Prosím vyplňte svoje údaje pre prihlásenie.</p>
+    <p>Please fill in your login credentials.</p>
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
         <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
-            <label>Meno</label>
+            <label>Name</label>
             <input type="text" name="username" class="form-control" value="<?php echo $username; ?>">
             <span class="help-block"><?php echo $username_err; ?></span>
         </div>
         <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
-            <label>Heslo</label>
+            <label>Password</label>
             <input type="password" name="password" class="form-control">
             <span class="help-block"><?php echo $password_err; ?></span>
         </div>
@@ -112,7 +113,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             <input type="submit" class="btn btn-primary" value="Login">
         </div>
     </form>
-    <a href="u2_index.php" class="btn btn-danger ">Späť</a>
+    <a href="u2en_index.php" class="btn btn-danger ">Back</a>
 </div>
 </body>
 </html>

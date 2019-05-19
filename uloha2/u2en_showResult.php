@@ -19,7 +19,7 @@ if(isset($_GET['language']) && $_GET['language'] == "EN"){
 
 // Check if the user is already logged in, if yes then redirect him to logged page
 if((!(isset($_SESSION["type"])) || ($_SESSION['type'] != admin))){
-    header("location: u2_index.php");
+    header("location: u2en_index.php");
     exit;
 }
 
@@ -37,7 +37,6 @@ if(isset($_POST['sumbit_body'])){
     $predmet=$_POST['predmet'];
     $rok=$_POST['rok'];
     $body=$_POST['body'];
-
 
     $sql = "UPDATE tim
         INNER JOIN predmet ON predmet.id = tim.id_predmet
@@ -68,7 +67,7 @@ if(isset($_GET['show'])){
     echo "<h2>".$predmet." ".$rok."</h2>";
 
     echo "<form action='".$_SERVER['REQUEST_URI']."' method='post' enctype='multipart/form-data'>		
-                  <button type='submit' name='export' class='btn btn-primary'>Exportovať údaje</button>		
+                  <button type='submit' name='export' class='btn btn-primary'>Export data</button>		
           </form>";
 
     $sql="SELECT * FROM zaznam
@@ -132,26 +131,26 @@ if(isset($_GET['show'])){
                         case "1":
                             $toPrintBasic = "
                            <i style='color: #4d8056 ;' class='fa fa-thumbs-up'></i>
-                           <div style='color: #4d8056;display: inline-block'>Už odsúhlasené.</div>";
+                           <div style='color: #4d8056;display: inline-block'>I agree with this valuation.</div>";
                             break;
                         case "2":
                             $toPrintBasic ="
                            <i style='color: #803024 ;' class='fa fa-thumbs-down'></i>
-                           <div style='color: #803024;display: inline-block'>Nesúhlasím s rozdelením bodov.</div>";
+                           <div style='color: #803024;display: inline-block'>I disagree with this valuation.</div>";
                             break;
                     }
                 }
             }
 
             if($previousTeam!=$actualTeam){
-                $toPrint=$toPrint."</table><br><br><label>Tím ".$actualTeam." <br>
-               Body tímu: $body_tim</label>
+                $toPrint=$toPrint."</table><br><br><label>Team #".$actualTeam." <br>
+                Team points: $body_tim</label>
                   <form action='".$_SERVER['REQUEST_URI']."' method='post' enctype='multipart/form-data'>
-                      <input type='number'  id ='teampointsfill' name='body' placeholder='Body pre tím' min='0'>
+                      <input type='number' id ='teampointsfill' name='body' placeholder='Team points' min='0'>
                       <input type='text' name='tim' value='$actualTeam' hidden>
                       <input type='text' name='rok' value='$rok' hidden>
                       <input type='text' name='predmet' value='$predmet' hidden>
-                      <button type='submit' name='sumbit_body' class='btn btn-primary' $classUdelitBody >Prideliť body tímu</button>
+                      <button type='submit' name='sumbit_body' class='btn btn-primary' $classUdelitBody >Submit points to team</button>
                   </form>
                    
                   $toPrintBasic
@@ -160,9 +159,9 @@ if(isset($_GET['show'])){
                       <thead class='thead-dark'>
                           <tr>
                               <th scope='col' class=\"col-md-3\">Email</th>
-                              <th scope='col' class=\"col-md-4\">Meno</th>
-                              <th scope='col' class=\"col-md-2\">Body</th>
-                              <th scope='col' class=\"col-md-2\">Súhlas</th>
+                              <th scope='col' class=\"col-md-4\">Name</th>
+                              <th scope='col' class=\"col-md-2\">Points</th>
+                              <th scope='col' class=\"col-md-2\">Agreement</th>
                           </tr>
                       </thead>";
                 $previousTeam=$actualTeam;
@@ -175,19 +174,19 @@ if(isset($_GET['show'])){
             switch($suhlas){
                 case "0":
                     $toPrint = $toPrint . "<td>
-                            <div style='color: #7b8080;'>Študent sa ešte nerozhodol.</div>
+                            <div style='color: #7b8080;'>Student has not decided yet.</div>
                             </td></tr>";
                     break;
                 case "1":
                     $toPrint = $toPrint . "<td>
                             <i style='color: #4d8056 ;' class='fa fa-thumbs-up'></i>
-                            <div style='color: #4d8056;display: inline-block'>Študent <b>súhlasí</b> s týmto hodnotením.</div>
+                            <div style='color: #4d8056;display: inline-block'>Student <b>agrees</b> with this valuation.</div>
                             </td></tr>";
                     break;
                 case "2":
                     $toPrint = $toPrint . "<td>
                             <i style='color: #803024 ;' class='fa fa-thumbs-down'></i>
-                            <div style='color: #803024;display: inline-block'>Študent <b>nesúhlasí</b> s týmto hodnotením.</div>
+                            <div style='color: #803024;display: inline-block'>Student <b>disagrees</b> with this valuation.</div>
                             </td></tr>";
                     break;
             };
@@ -203,7 +202,7 @@ if(isset($_GET['show'])){
 <html lang="sk">
 <head>
     <meta charset="UTF-8">
-    <title>Úloha 2</title>
+    <title>Task 2</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
     <link rel="stylesheet" media="print" href="print.css" type="text/css">
@@ -214,17 +213,15 @@ if(isset($_GET['show'])){
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 </head>
 <body>
-
 <div class="fixed-top">
-    <ul><a href="u2_showResult.php?language=EN">Switch to <img name="en" src="u2_gb.png" alt="en"/></a></ul>
+    <ul><a href="u2en_showResult.php?language=SK">Prepni do <img name="sk" src="u2_sk.png" alt="sk"/></a></ul>
 </div>
-
 <!--    zobrazenie timov-->
 <div class="wrapper" id="selector">
-    <h2>Zobrazenie výsledkov</h2>
+    <h2>Show results</h2>
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="get">
         <select name='schoolYear' id="schoolYear" class="form-control" onChange="getPredmet(this.value);">
-            <option value="">Vyber rok</option>
+            <option value="">Select year</option>
             <option value="ZS 2019/2020">ZS 2019/2020</option>
             <option value="LS 2019/2020">LS 2019/2020</option>
             <option value="ZS 2020/2021">ZS 2020/2021</option>
@@ -234,15 +231,15 @@ if(isset($_GET['show'])){
         </select>
 
         <select name='predmetName' id="predmetName" class="form-control">
-            <option value="">Vyber predmet</option>
+            <option value="">Select subject</option>
         </select>
         <br>
         <div class="form-group">
-            <input type="submit" class="btn btn-primary" name="show" value="Zobraziť">
+            <input type="submit" class="btn btn-primary" name="show" value="Show">
         </div>
-        <a href="u2_stats.php" class="btn btn-info">Štatistiky</a>
-        <a href="u2_importResult.php" class="btn btn-primary">Importovať údaje</a><br><br>
-        <a href="u2_logout.php" class="btn btn-danger">Odhlásiť sa</a><br>
+        <a href="u2en_stats.php" class="btn btn-info">Statistics</a>
+        <a href="u2en_importResult.php" class="btn btn-primary">Import data</a><br><br>
+        <a href="u2_logout.php" class="btn btn-danger">Sign out</a><br>
     </form>
 </div>
 
@@ -251,7 +248,7 @@ if(isset($_GET['show'])){
     function postSuhlas(suhlas, timID) {
         $.ajax({
             type: "POST",
-            url: "u2_showResult.php",
+            url: "u2en_showResult.php",
             data:{ suhlas: suhlas, timID:timID},
             success: function () {
                 setTimeout(function(){

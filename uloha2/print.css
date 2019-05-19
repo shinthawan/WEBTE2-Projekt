@@ -1,14 +1,12 @@
 @media print {
-    #header,#left,#right {
-        display: none;
-    }
-    img {
-        max-width: 500px;
+    #selector, .btn, #header, #left, #right, .fixed-top, img, #teampointsfill {
+        display: none !important;
     }
 
     @page {
         margin: 0.5cm;
     }
+
     body {
         font: 12pt Georgia, "Times New Roman", Times, serif;
         line-height: 1.3;
@@ -16,5 +14,9 @@
 
     h1 {
         font-size: 24pt;
+    }
+
+    h2 {
+        font-size: 20pt;
     }
 }

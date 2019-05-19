@@ -18,7 +18,7 @@ if(isset($_GET['language']) && $_GET['language'] == "EN"){
 
 // Check if the user is already logged in, if yes then redirect him to logged page
 if((!(isset($_SESSION["type"])) || ($_SESSION['type'] != admin))){
-    header("location: u2_index.php");
+    header("location: u2en_index.php");
     exit;
 }
 
@@ -111,10 +111,10 @@ if (isset($_POST["import"])) {
 
 ?>
 <!DOCTYPE html>
-<html lang="sk">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Úloha 2 - Import výsledkov</title>
+    <title>Task 2 - Import results</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
     <link rel="stylesheet" media="print" href="print.css" type="text/css">
@@ -125,16 +125,17 @@ if (isset($_POST["import"])) {
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 </head>
 <body>
-<!--    upload udajov-->
+
 <div class="fixed-top">
-    <ul><a href="u2en_importResult.php?language=EN">Switch to <img name="en" src="u2_gb.png" alt="en"/></a></ul>
+    <ul><a href="u2_importResult.php?language=SK">Prepni do <img name="sk" src="u2_sk.png" alt="sk"/></a></ul>
 </div>
 
+<!--    upload udajov-->
 <div class="wrapper" id="selector">
-    <h2>Import výsledkov</h2>
+    <h2>Import results</h2>
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
         <div class="form-group">
-            <label>Školský rok</label>
+            <label>School year</label>
             <select name='schoolYear' class="form-control">
                 <option value="ZS 2019/2020">ZS 2019/2020</option>
                 <option value="LS 2019/2020">LS 2019/2020</option>
@@ -145,7 +146,7 @@ if (isset($_POST["import"])) {
             </select>
         </div>
         <div class="form-group" <?php echo (!empty($predmetNameErr)) ? 'has-error' : ''; ?>>
-            <label>Názov predmetu</label>
+            <label>Subject name</label>
             <input type="text" name="predmetName" class="form-control">
             <span class="help-block"><?php echo $predmetNameErr; ?></span>
         </div>
@@ -157,7 +158,7 @@ if (isset($_POST["import"])) {
             </div>
         </div>
         <div class="form-group">
-            <label>Oddeľovač stĺpcov</label>
+            <label>Collumn separator</label>
             <select class="form-control" name="separator">
                 <option value=";"> ; </option>
                 <option value=","> , </option>
@@ -166,7 +167,7 @@ if (isset($_POST["import"])) {
         <div class="form-group">
             <input type="submit" class="btn btn-primary" value="Import" name="import">
         </div>
-        <a href="u2_showResult.php" class="btn btn-danger">Naspäť</a>
+        <a href="u2en_showResult.php" class="btn btn-danger">Back</a>
     </form>
 </div>
 </body>
