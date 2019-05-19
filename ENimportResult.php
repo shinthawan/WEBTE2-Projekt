@@ -130,10 +130,10 @@ if ( isset($_POST["submit"]) ) {
 }
 ?>
 <!DOCTYPE html>
-<html lang="sk">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Uloha 1</title>
+    <title>TASK 1</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
     <style type="text/css">
         body{ font: 14px sans-serif; }
@@ -144,20 +144,20 @@ if ( isset($_POST["submit"]) ) {
 <nav class="navbar navbar-default">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#">ULOHA 1</a>
+            <a class="navbar-brand" href="#">TASK 1</a>
         </div>
         <ul class="nav navbar-nav">
-            <li class="active"><a href="uloha1menu.php">Domov</a></li>
+            <li class="active"><a href="ENuloha1menu.php">Home</a></li>
             <li><?php if(isset($_SESSION["admin"]) && $_SESSION["admin"] === true) {
-                    echo "<a href=\"importResult.php\">Import výsledkov</a>";           //ak je prihlaseny ako admin tak "Uloha1" sluzi na importResult
+                    echo "<a href=\"ENimportResult.php\">Import results</a>";           //ak je prihlaseny ako admin tak "Uloha1" sluzi na importResult
                 } ?></li>
             <li><?php if(isset($_SESSION["admin"]) && $_SESSION["admin"] === true){                                                     //ak je student tak na studentView
-                    echo"<a href=\"showResult.php\">Zobrazenie výsledkov</a>";          //pri prihlaseni ako student ale aj pri prihlaseni cez ldap sa naplni session student
+                    echo"<a href=\"ENshowResult.php\">Show results</a>";          //pri prihlaseni ako student ale aj pri prihlaseni cez ldap sa naplni session student
                 }?></li>
             <li><?php if(isset($_SESSION["admin"]) && $_SESSION["admin"] === true){                                                     //ak je student tak na studentView
-                    echo"<a href=\"deleteSubject.php\">Vymazanie predmetu</a>";          //pri prihlaseni ako student ale aj pri prihlaseni cez ldap sa naplni session student
+                    echo"<a href=\"ENdeleteSubject.php\">Delete subject</a>";          //pri prihlaseni ako student ale aj pri prihlaseni cez ldap sa naplni session student
                 }?></li>
-            <li><a href="uloha1menu.php?language=EN">Jazyk</a></li>
+            <li><a href="uloha1menu.php?language=SK">Language</a></li>
         </ul>
     </div>
 </nav>
@@ -166,7 +166,7 @@ if ( isset($_POST["submit"]) ) {
             <div class="form-group">
                 <div class="custom-file">
                     <label class="btn btn-default btn-file">
-                        <input type="file" name="file" id="file" class="custom-file-input" accept=".csv" />
+                        <input type="file" name="file" id="file" class="custom-file-input" accept=".csv"/>
                     </label>
                 </div>
             </div>
@@ -206,9 +206,9 @@ if ( isset($_POST["submit"]) ) {
                 ?>
             </div>
             <div class="form-group">
-                    <input type="submit" name="submit" class="btn btn-primary" />
+                    <input type="submit" name="submit" class="btn btn-primary" value="Submit"/>
             </div>
+
         </form>
-    </div>
 </body>
 </html>

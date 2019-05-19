@@ -43,6 +43,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                 echo "LDAP bind successful...";
                 $_SESSION["ldap"] = true;
                 $_SESSION["student"] = true;
+                $_SESSION["loggedin"] = true;
                 $_SESSION["ldapName"] = $username;
                 header("location: uloha1menu.php");
             }else {

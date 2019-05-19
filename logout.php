@@ -22,7 +22,7 @@ if($_SESSION['ldapName']){
     session_destroy();
 
     // Redirect to login page
-    header("location: ../index.php");
+    header("location: uloha1menu.php");
     exit;
 }
 
